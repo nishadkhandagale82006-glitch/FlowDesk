@@ -20,7 +20,7 @@ export default function DashboardStats({ refreshKey = 0 }) {
 
   useEffect(() => {
     let active = true;
-    supabase.from("tasks").select("status, priority, due_at, due_date").then(({ data, error: queryError }) => {
+    supabase.from("tasks").select("status, priority, due_at").then(({ data, error: queryError }) => {
       if (!active) return;
       setTasks(data || []);
       setError(queryError?.message || "");
