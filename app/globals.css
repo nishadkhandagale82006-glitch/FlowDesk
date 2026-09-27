@@ -1,26 +1,165 @@
 @import "tailwindcss";
 
+@theme {
+  --color-black: #122337;
+
+  --color-gray-50: #f7fafc;
+  --color-gray-100: #eef4f8;
+  --color-gray-200: #dce7ef;
+  --color-gray-300: #c5d3df;
+  --color-gray-400: #8295a8;
+  --color-gray-500: #62788d;
+  --color-gray-600: #4a6178;
+  --color-gray-700: #344d65;
+  --color-gray-800: #243e57;
+  --color-gray-900: #172f47;
+  --color-gray-950: #10263c;
+
+  --color-slate-50: #f7fafc;
+  --color-slate-100: #eef4f8;
+  --color-slate-200: #dce7ef;
+  --color-slate-300: #c5d3df;
+  --color-slate-400: #8295a8;
+  --color-slate-500: #62788d;
+  --color-slate-600: #4a6178;
+  --color-slate-700: #344d65;
+  --color-slate-800: #243e57;
+  --color-slate-900: #172f47;
+  --color-slate-950: #10263c;
+
+  --color-indigo-50: #eff6ff;
+  --color-indigo-100: #dbeafe;
+  --color-indigo-200: #bfdbfe;
+  --color-indigo-300: #93c5fd;
+  --color-indigo-400: #60a5fa;
+  --color-indigo-500: #3b82f6;
+  --color-indigo-600: #2563eb;
+  --color-indigo-700: #1d4ed8;
+  --color-indigo-800: #1e40af;
+  --color-indigo-900: #1e3a8a;
+  --color-indigo-950: #172554;
+
+  --color-emerald-50: #f0fdf4;
+  --color-emerald-100: #dcfce7;
+  --color-emerald-200: #bbf7d0;
+  --color-emerald-300: #86efac;
+  --color-emerald-500: #22c55e;
+  --color-emerald-600: #16a34a;
+  --color-emerald-700: #15803d;
+
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+
+  --color-red-50: #eff6ff;
+  --color-red-100: #dbeafe;
+  --color-red-200: #bfdbfe;
+  --color-red-500: #3b82f6;
+  --color-red-600: #2563eb;
+  --color-red-700: #1d4ed8;
+  --color-rose-50: #eff6ff;
+  --color-rose-100: #dbeafe;
+  --color-rose-200: #bfdbfe;
+  --color-rose-500: #3b82f6;
+  --color-rose-600: #2563eb;
+  --color-rose-700: #1d4ed8;
+
+  --color-orange-50: #eff6ff;
+  --color-orange-100: #dbeafe;
+  --color-orange-200: #bfdbfe;
+  --color-orange-700: #1d4ed8;
+  --color-orange-800: #1e40af;
+  --color-amber-50: #f0fdf4;
+  --color-amber-100: #dcfce7;
+  --color-amber-500: #22c55e;
+  --color-amber-600: #16a34a;
+  --color-amber-700: #15803d;
+  --color-yellow-100: #dbeafe;
+  --color-yellow-700: #1d4ed8;
+
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-700: #1d4ed8;
+  --color-sky-500: #3b82f6;
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --canvas: #f5f9fc;
+  --surface: #ffffff;
+  --surface-raised: #f7fafc;
+  --line: #dce7ef;
+  --ink: #172f47;
+  --muted: #62788d;
+  --accent: #2563eb;
+  background: var(--canvas);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at 80% 0%, rgb(37 99 235 / 6%), transparent 38rem),
+    var(--canvas);
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-feature-settings: "ss01" on;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.025em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: white;
+  background: #2563eb;
+}
+
+.graph-bar {
+  transform-origin: left center;
+  animation: graph-fill 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+@keyframes graph-fill {
+  from { transform: scaleX(0.04); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
