@@ -59,10 +59,12 @@ export default function AddTaskModal({
       return;
     }
 
+    const newlyCompleted = payload.status === "DONE" && getStoredStatus(task || {}) !== "DONE";
     const logError = await logActivity(
-      task?.id ? "Task updated" : "Task created",
+      newlyCompleted ? "Task completed" : task?.id ? "Task updated" : "Task created",
       "task",
       payload.title,
+      newlyCompleted ? payload.assignee : null,
     );
     setSaving(false);
     onTaskAdded?.({ activityError: logError?.message || null });

@@ -102,7 +102,7 @@ export default function TasksPage() {
       setError(updateError.message);
       return;
     }
-    const activityError = await logActivity(status === "DONE" ? "Task completed" : "Task status changed", "task", task.title);
+    const activityError = await logActivity(status === "DONE" ? "Task completed" : "Task status changed", "task", task.title, status === "DONE" ? task.assignee : null);
     setNotice(activityError ? "Task saved. Run the activity migration to enable the activity feed." : "Task status updated.");
     await fetchData();
     setActivityRefresh((value) => value + 1);

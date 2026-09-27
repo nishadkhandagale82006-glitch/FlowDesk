@@ -67,6 +67,7 @@ export default function TaskList({ onActivityChange }) {
       status === "DONE" ? "Task completed" : "Task status changed",
       "task",
       task.title,
+      status === "DONE" ? task.assignee : null,
     );
     setNotice(activityError ? "Task saved. Run the activity migration to enable the activity feed." : "Task status saved.");
     await fetchTasks();
